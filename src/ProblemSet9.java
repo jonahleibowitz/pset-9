@@ -2,14 +2,7 @@ import java.util.*;
 
 public class ProblemSet9 {
 
-    public static void main (String[] args){
-        int[] arr = {-2, 10, 7, 2};
-        //int[] b = {2, 3, 5};
-        System.out.println(outliers(arr));
-        //(Arrays.toString(
-    }
-
-    public static int[] evenOdd(int[] arr) {
+    public int[] evenOdd(int[] arr) {
     if (arr == null){
        return null;
     }
@@ -34,7 +27,8 @@ public class ProblemSet9 {
         return finalArray;
      }
 
-    public static int[] notAlone(int[] arr, int alone) {
+
+    public int[] notAlone(int[] arr, int alone) {
         if (arr == null || arr.length == 0){
             return null;
         }
@@ -50,19 +44,21 @@ public class ProblemSet9 {
         return arr;
         }
 
-    public static int[] shiftLeft(int[] arr) {
+
+    public int[] shiftLeft(int[] arr) {
     if(arr == null){
         return null;
     }
         int[] cloned = arr.clone();
-        cloned[0] = arr[arr.length-1];
+        cloned[arr.length-1] = arr[0];
             for(int i = 0; i < arr.length-1; i++){
-                cloned[i+1] = arr[i];
+                cloned[i] = arr[i+1];
             }
         return cloned;
     }
 
-    public static int[] fillIn(int start, int end) {
+
+    public int[] fillIn(int start, int end) {
     if(start > end){
         return null;
          }
@@ -81,7 +77,8 @@ public class ProblemSet9 {
         * */
     }
 
-    public static boolean triple(int[] arr) {
+
+    public boolean triple(int[] arr) {
         if(arr == null){
         return false;
     }
@@ -98,7 +95,8 @@ public class ProblemSet9 {
       return answer;
     }
 
-    public static int pairs(int[] a, int[] b) {
+
+    public int pairs(int[] a, int[] b) {
     if(a == null || b == null || a.length != b.length){
         return -1;
     }
@@ -111,7 +109,8 @@ public class ProblemSet9 {
         return counter;
     }
 
-    public static boolean twentyFour(int[] arr) {
+
+    public boolean twentyFour(int[] arr) {
     if (arr == null){
         return false;
     }
@@ -140,7 +139,8 @@ public class ProblemSet9 {
     return answer;
     }
 
-    public static boolean fourteen(int[] arr) {
+
+    public boolean fourteen(int[] arr) {
     if(arr == null){
         return false;
     }
@@ -155,7 +155,8 @@ public class ProblemSet9 {
     return check;
     }
 
-    public static int centeredAverage(int[] arr) {
+
+    public int centeredAverage(int[] arr) {
     if(arr == null || arr.length < 3){
         return -1;
     }
@@ -184,7 +185,8 @@ public class ProblemSet9 {
         return average;
     }
 
-    public static int outliers(int[] arr) {
+
+    public int outliers(int[] arr) {
         if (arr == null || arr.length < 1) {
             return -1;
         }
