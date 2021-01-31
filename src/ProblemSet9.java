@@ -3,9 +3,9 @@ import java.util.*;
 public class ProblemSet9 {
 
     public static void main (String[] args){
-        int[] a = {1, 2, 3};
-        int[] b = {2, 3, 5};
-        System.out.println(pairs(a, b));
+        int[] arr = {-2, 10, 7, 2};
+        //int[] b = {2, 3, 5};
+        System.out.println(outliers(arr));
         //(Arrays.toString(
     }
 
@@ -111,19 +111,93 @@ public class ProblemSet9 {
         return counter;
     }
 
-    public boolean twentyFour(int[] arr) {
-
+    public static boolean twentyFour(int[] arr) {
+    if (arr == null){
+        return false;
     }
-/*
-    public boolean fourteen(int[] arr) {
-
+    boolean two = false;
+    boolean four = false;
+    boolean answer = false;
+    //2 loop
+    for(int i = 1; i < arr.length; i++){
+        if(arr[i] == 2){
+            if(arr[i-1] == 2 || arr[i+1] == 2){
+                two = true;
+            }
+        }
+    }
+    //4 loop
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i] == 4){
+                if(arr[i-1] == 4 || arr[i+1] == 4){
+                    four = true;
+                }
+            }
+        }
+    if(two != four){
+        answer = true;
+    }
+    return answer;
     }
 
-    public int centeredAverage(int[] arr) {
-
+    public static boolean fourteen(int[] arr) {
+    if(arr == null){
+        return false;
+    }
+    boolean check = false;
+    for(int i : arr){
+        if(i != 1 && i != 4){
+            check = false;
+        } else{
+            check =true;
+        }
+    }
+    return check;
     }
 
-    public int outliers(int[] arr) {
+    public static int centeredAverage(int[] arr) {
+    if(arr == null || arr.length < 3){
+        return -1;
+    }
+    int min = arr[0];
+    int max = arr[0];
+    int minIndex=0;
+    int maxIndex=0;
+    for(int i = 0; i < arr.length; i++){
+        if(arr[i] > max){
+            max = arr[i];
+            maxIndex = i;
+        } else if (arr[i] < min){
+            min = arr [i];
+            minIndex = i;
+        }
+    }
+        int[] cloned = arr.clone();
+        cloned[maxIndex] = 0;
+        cloned[minIndex] = 0;
+     //averaging
+     int sum = 0;
+        for (int j : cloned) {
+            sum = sum + j;
+        }
+     int average = sum/(arr.length-2);
+        return average;
+    }
 
-    } */
+    public static int outliers(int[] arr) {
+        if (arr == null || arr.length < 1) {
+            return -1;
+        }
+        int min = arr[0];
+        int max = arr[0];
+        for(int i= 0; i < arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            } else if(arr[i] < min){
+                min = arr[i];
+            }
+        }
+        int difference = max - min;
+        return difference;
+    }
 }
