@@ -1,81 +1,120 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class ProblemSet9 {
 
     public static void main (String[] args){
-        int[] arr = {1, 2, 3};
-       // int alone = 1;
-        System.out.println(evenOdd(arr));
+        int[] a = {1, 2, 3};
+        int[] b = {2, 3, 5};
+        System.out.println(pairs(a, b));
         //(Arrays.toString(
     }
 
     public static int[] evenOdd(int[] arr) {
-    if (arr == null){ //conditions
+    if (arr == null){
        return null;
     }
-    int arrayLength = arr.length;
-    int[] comboArray = new int[arrayLength];
-    int evenNumber = 0; //creating even number counter
-    int oddNumber= 0;   //creating odd number counter
+    List<Integer> evens = new ArrayList<>();
+    List<Integer> odds = new ArrayList<>();
 
-    for(int i : arr){   //for loop looks at each value
-        if(i % 2 == 0){  //if i is even,
-            evenNumber += 1; //records that there is an even number
-        } else {
-            oddNumber += 1;  //otherwise, records there is an odd number
+    for(int i : arr){
+        if(i % 2 == 0){
+            evens.add(i);
+        } else{
+            odds.add(i);
         }
-    int[] evens = new int[evenNumber]; //creates array with enough values to hold all evens
-    int currentSizeEvens = 0;
-    int[] odds = new int[oddNumber];   //creates array with enough values to hold all odds
-         int currentSizeOdds = 0;
+    }
+    evens.addAll(odds);
 
-        for (int j : arr) {
-            if(j % 2 == 0) {
-                evens[currentSizeEvens] = arr[j];    // add element to array\
-                currentSizeEvens ++;
-            } else{
-                odds[currentSizeOdds] = arr[j];
-                currentSizeOdds ++;
+        int[] finalArray = new int[evens.size()];
+        for (int i=0; i < finalArray.length; i++)
+        {
+            finalArray[i] = evens.get(i).intValue();
+        }
+
+        return finalArray;
+     }
+
+    public static int[] notAlone(int[] arr, int alone) {
+        if (arr == null || arr.length == 0){
+            return null;
+        }
+        for(int i = 1; i < arr.length-1; i ++){
+            if (arr[i] == alone){
+                   if(arr[i-1] > arr[i]+1){
+                       arr[i] = arr[i-1];
+                   } else{
+                       arr[i] = arr[i+1];
+                   }
             }
-
         }
-        /*First, iterate through each value in evens, each evens[i] becomes combo[i]
-        * Next, iterate through odds, each odd[i] becomes combo[i+(evens.length)]*/
-
-        for(int k : evens){
-            comboArray[k] = evens[k];
+        return arr;
         }
-        for (int f : odds){
-            comboArray[f+(evens.length)] = odds[f];
+
+    public static int[] shiftLeft(int[] arr) {
+    if(arr == null){
+        return null;
+    }
+        int[] cloned = arr.clone();
+        cloned[0] = arr[arr.length-1];
+            for(int i = 0; i < arr.length-1; i++){
+                cloned[i+1] = arr[i];
+            }
+        return cloned;
+    }
+
+    public static int[] fillIn(int start, int end) {
+    if(start > end){
+        return null;
+         }
+    int[] list = new int[end-start];
+        //list[0] = start;
+        for(int i=0; i < list.length; i++){
+            list[i] = start + i;
+        }
+
+        return list;
+        /*
+        * Plan:
+        * create array with length = to difference between start and end
+        * Array starts with int start
+        * each value after should be 1 more than previous
+        * */
+    }
+
+    public static boolean triple(int[] arr) {
+        if(arr == null){
+        return false;
+    }
+     int threeCount = 0;
+     boolean answer = false;
+        for(int i = 0; i<arr.length ; i++){
+            if(arr[i] == 3){
+                threeCount ++;
+            }
+        }
+      if(threeCount == 3){
+          answer = true;
+      }
+      return answer;
+    }
+
+    public static int pairs(int[] a, int[] b) {
+    if(a == null || b == null || a.length != b.length){
+        return -1;
+    }
+    int counter =0;
+    for(int i = 0; i < a.length; i++){
+        if(a[i] != b[i] && (a[i] - b[i]) < 3 && (b[i] - a[i]) < 3) {
+            counter++;
         }
     }
-        return comboArray;
-    }
-/*
-    public int[] notAlone(int[] arr, int alone) {
-
-    }
-
-    public int[] shiftLeft(int[] arr) {
-
-    }
-
-    public int[] fillIn(int start, int end) {
-
-    }
-
-    public boolean triple(int[] arr) {
-
-    }
-
-    public int pairs(int[] a, int[] b) {
-
+        return counter;
     }
 
     public boolean twentyFour(int[] arr) {
 
     }
-
+/*
     public boolean fourteen(int[] arr) {
 
     }
